@@ -5,7 +5,7 @@
     <Form
       class="form w-100"
       id="kt_login_signin_form"
-      @submit="loginUser(email,password)"
+      @submit="login(values)"
     >
       <!--begin::Heading-->
       <div class="text-center mb-10">
@@ -44,7 +44,7 @@
           type="text"
           name="email"
           autocomplete="off"
-          v-model="email"
+          v-model="values.email"
         />
         <!--end::Input-->
         <div class="fv-plugins-message-container">
@@ -77,7 +77,7 @@
           type="password"
           name="password"
           autocomplete="off"
-          v-model="password"
+          v-model="values.password"
         />
         <!--end::Input-->
         <div class="fv-plugins-message-container">
@@ -177,7 +177,7 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const router = useRouter();
-    const { loginUser, loginWithGoogle } = useAuthentication();
+    const { login, loginWithGoogle } = useAuthentication();
 
     // const submitButton = ref<HTMLButtonElement | null>(null);
 
@@ -190,16 +190,21 @@ export default defineComponent({
     //Form submit function
     const email = ref('')
   const password = ref('')
+  const values = ref({
+    email: '',
+    password: '',
+  })
   
   
     return {
       // onSubmitLogin,
       // login,
       // submitButton,
-      loginUser,
+      login,
       loginWithGoogle,
       email,
       password,
+      values,
     };
   },
 });

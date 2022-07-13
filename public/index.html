@@ -24,7 +24,7 @@ Use below html tag for RTL version
 
         if (themeMode === null) {
             if (defaultThemeMode === "system") {
-                themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+                themeMode = window.matchMedia("(prefers-color-scheme: light)").matches ? "dark" : "light";
             } else {
                 themeMode = defaultThemeMode;
             }
