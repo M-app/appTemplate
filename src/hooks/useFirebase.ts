@@ -10,18 +10,16 @@ export const useFirebase = () => {
     const store = useStore()
     const router = useRouter()
 
-    
-
-    const loginUser = async (values) => {
+    const loginUser = async (email, password) => {
          await firebase
         .auth()
-        .signInWithEmailAndPassword(values.email, values.password) // THIS LINE CHANGED
+        .signInWithEmailAndPassword(email, password) // THIS LINE CHANGED
         .then((data) => {
-            console.log('Successfully logged in!', values.email, values.password);
-            router.push('/builder'); // redirect to the feed
+            console.log('Successfully logged in!', email, password);
+            router.push('/dashboard'); // redirect to the feed
             
         })
-        await store.dispatch(Actions.LOGIN, values)
+        // await store.dispatch(Actions.LOGIN, )
         .catch(error => {
             console.log(error.code)
             alert(error.message);
@@ -34,7 +32,7 @@ export const useFirebase = () => {
       .createUserWithEmailAndPassword(email, password) // need .value because ref()
       .then((data) => {
         console.log('Successfully registered!');
-        router.push('/profile') // redirect to the feed
+        router.push('/dashboard') // redirect to the feed
       })
       
       .catch(error => {
@@ -46,6 +44,10 @@ export const useFirebase = () => {
     const loginWithGoogle = async () => {
         const provider = new firebase.auth.GoogleAuthProvider();
         await auth.signInWithPopup(provider)
+        .then((data) => {
+            console.log('Successfully google!');
+            router.push('/dashboard') // redirect to the feed
+          })
     }
 
     const loginWithSMS = async () => {

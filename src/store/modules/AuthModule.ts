@@ -21,8 +21,8 @@ export interface UserAuthInfo {
 export default class AuthModule extends VuexModule implements UserAuthInfo {
   errors = {};
   user = {} as User;
-  isAuthenticated = !!JwtService.getToken();
-
+  // isAuthenticated = !!JwtService.getToken();
+isAuthenticated = true;
   /**
    * Get current user object
    * @returns User
