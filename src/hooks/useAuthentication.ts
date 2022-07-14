@@ -1,21 +1,21 @@
-import {firebase, auth} from '../firebase';
+
 import 'firebase/auth';
 import 'firebase/firestore';
 import { useRouter } from 'vue-router';
 import { useFirebase } from './useFirebase';
 export const useAuthentication = () => {
     const router = useRouter()
-    const { loginUser } = useFirebase()
+    const { loginUser, register, loginWithGoogle } = useFirebase()
 
-    const login = async (values) => {
-        loginUser(values)
+    const login = async (email,password) => {
+        loginUser(email,password)
     }
 
-    const register = async (email,password) => {
+    const registerUser = async (email,password) => {
        register(email, password)
     }
 
-    const loginWithGoogle = async () => {
+    const loginWithGoogleUser = async () => {
         loginWithGoogle()
     }
 
@@ -28,5 +28,7 @@ export const useAuthentication = () => {
         loginUser,
         loginWithGoogle,
         register,
+        registerUser,
+        loginWithGoogleUser
     }
 }

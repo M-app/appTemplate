@@ -5,7 +5,7 @@
     <Form
       class="form w-100"
       id="kt_login_signin_form"
-      @submit="login(values)"
+      @submit="login(email, password)"
     >
       <!--begin::Heading-->
       <div class="text-center mb-10">
@@ -44,7 +44,7 @@
           type="text"
           name="email"
           autocomplete="off"
-          v-model="values.email"
+          v-model="email"
         />
         <!--end::Input-->
         <div class="fv-plugins-message-container">
@@ -77,7 +77,7 @@
           type="password"
           name="password"
           autocomplete="off"
-          v-model="values.password"
+          v-model="password"
         />
         <!--end::Input-->
         <div class="fv-plugins-message-container">
@@ -112,9 +112,12 @@
         <!--end::Separator-->
 
         <!--begin::Google link-->
+      </div>
+      <!--end::Actions-->
+    </Form>
         <button
           class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5"
-          @click="loginWithGoogle"
+          @click="loginWithGoogle()"
         >
           <img
             alt="Logo"
@@ -149,9 +152,6 @@
           Continue with Apple
         </a>
         <!--end::Google link-->
-      </div>
-      <!--end::Actions-->
-    </Form>
     <!--end::Form-->
   </div>
   <!--end::Wrapper-->
@@ -190,10 +190,6 @@ export default defineComponent({
     //Form submit function
     const email = ref('')
   const password = ref('')
-  const values = ref({
-    email: '',
-    password: '',
-  })
   
   
     return {
@@ -204,7 +200,6 @@ export default defineComponent({
       loginWithGoogle,
       email,
       password,
-      values,
     };
   },
 });

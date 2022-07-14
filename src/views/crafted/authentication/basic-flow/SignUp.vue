@@ -5,7 +5,7 @@
     <Form
       class="form w-100"
       id="kt_login_signin_form"
-      @submit="register(email,password)"
+      @submit="registerUser(email,password)"
     >
       <!--begin::Heading-->
       <div class="text-center mb-10">
@@ -15,10 +15,10 @@
 
         <!--begin::Link-->
         <div class="text-gray-400 fw-semobold fs-4">
-          New Here?
+          have account?
 
           <router-link to="/sign-in" class="link-primary fw-bold">
-            Have account?
+            Sign In?
           </router-link>
         </div>
         <!--end::Link-->
@@ -114,7 +114,7 @@
         <!--begin::Google link-->
         <button
           class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5"
-          @click="loginWithGoogle"
+          @click="loginWithGoogleUser"
         >
           <img
             alt="Logo"
@@ -168,7 +168,7 @@ import * as Yup from "yup";
 import { useAuthentication } from "@/hooks/useAuthentication";
 
 export default defineComponent({
-  name: "sign-in",
+  name: "sign-up",
   components: {
     Field,
     Form,
@@ -177,7 +177,7 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const router = useRouter();
-    const { register, loginWithGoogle } = useAuthentication();
+    const { registerUser, loginWithGoogleUser } = useAuthentication();
 
     // const submitButton = ref<HTMLButtonElement | null>(null);
 
@@ -196,8 +196,8 @@ export default defineComponent({
       // onSubmitLogin,
       // login,
       // submitButton,
-      register,
-      loginWithGoogle,
+      registerUser,
+      loginWithGoogleUser,
       email,
       password,
     };
